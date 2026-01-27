@@ -146,7 +146,7 @@ connectionGroupHouse.on("subscriptionStatus", (strGroupsJoined, houseName, hasSu
 });
 
 function fulfilled() {
-    connectionGroupHouse.invoke("").then(() => { });
+    //connectionGroupHouse.invoke("").then(() => { });
 
     console.log("Connection to HouseGroupHub established.");
 }
