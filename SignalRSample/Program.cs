@@ -14,7 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-builder.Services.AddSignalR();
+
+//var connectionAzureSignalR = "Endpoint=https://lucasdotnetmastery.service.signalr.net;AccessKey=93tzReYj3WTZPsTpN5gyjfbbNtEkMLMA7fZBQKMD3iqFeRWwbrA2JQQJ99CAAC1i4TkXJ3w3AAAAASRS9TcR;Version=1.0;";
+
+builder.Services.AddSignalR(); //.AddAzureSignalR(connectionAzureSignalR);
 
 var app = builder.Build();
 
@@ -46,5 +49,7 @@ app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
 app.MapHub<HouseGroupHub>("/hubs/houseGroupHub");
 app.MapHub<NotificationHub>("/hubs/notification");
 app.MapHub<ChatHub>("/hubs/chat");
+app.MapHub<BasicChatHub>("/hubs/basicchat");
+app.MapHub<OrderHub>("/hubs/order");
 
 app.Run();
