@@ -89,6 +89,19 @@ namespace SignalRSample.Hubs
             await Clients.Users(users).SendAsync("ReceivePrivateMessage", senderId, senderName, receiverId, message, Guid.NewGuid(), receiverName);
         }
 
+        public async Task SendOpenPrivateChat(string receiverId)
+        {
+            var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _db.Users.FirstOrDefault(u => u.Id == userId).UserName;
+
+            await Clients.User(receiverId).SendAsync("ReceiveOpenPrivateChat", userId, userName);
+        }
+
+        public async Task SendDeletePrivateChat(string chatId)
+        {
+            await Clients.All.SendAsync("ReceiveDeletePrivateChat", chatId);
+        }
+
         //[Authorize]
         //public async Task SendMessageToAll(string user, string message)
         //{

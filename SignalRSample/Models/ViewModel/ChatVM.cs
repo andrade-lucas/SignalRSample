@@ -7,9 +7,9 @@
             Rooms = new List<ChatRoom>();
         }
 
-        public int MaxRoolAllowed { get; set; }
+        public int MaxRoomAllowed { get; set; }
         public IList<ChatRoom> Rooms { get; set; }
         public string? UserId { get; set; }
-        public bool AllowAdRoom => Rooms == null || Rooms.Count < MaxRoolAllowed;
+        public bool AllowAddRoom => Rooms == null || Rooms.Count < MaxRoomAllowed;
     }
 }

@@ -71,7 +71,21 @@ namespace SignalRSample.Controllers
             ChatVM chatVM = new()
             {
                 Rooms = _context.ChatRoom.ToList(),
-                MaxRoolAllowed = 4,
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+
+            return View(chatVM);
+        }
+
+        [Authorize]
+        public IActionResult AdvancedChat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ChatVM chatVM = new()
+            {
+                Rooms = _context.ChatRoom.ToList(),
+                MaxRoomAllowed = 4,
                 UserId = userId,
             };
 
